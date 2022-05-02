@@ -10,6 +10,7 @@ import { LayoutPage } from './layout.page';
 import { TodoCreateComponent } from '../todo-create/todo-create.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
+import { StorageService } from '../service/storage.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
     LayoutPageRoutingModule,
     FontAwesomeModule,
   ],
+  providers: [StorageService],
   declarations: [LayoutPage, TodoCreateComponent, TodoItemComponent],
 })
 export class LayoutPageModule {}

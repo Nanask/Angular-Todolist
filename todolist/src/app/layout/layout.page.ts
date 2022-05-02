@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { StorageService } from '../service/storage.service';
+
+const todoListStorageKey = 'Todo_List';
 
 export interface ITodoDTO {
   id: number;
@@ -12,11 +15,8 @@ export interface ITodoDTO {
   styleUrls: ['./layout.page.scss'],
 })
 export class LayoutPage implements OnInit {
-  constructor() {}
+  constructor(private storageService: StorageService) {}
   todoList: ITodoDTO[] = [];
-
-  check = false;
-
   index = 0;
 
   ngOnInit() {}
@@ -32,9 +32,9 @@ export class LayoutPage implements OnInit {
     this.todoList = _todoList;
 
     if (this.todoList.length !== 0) {
-      localStorage.setItem('todoList', JSON.stringify(this.todoList));
+      this.storageService.setData(todoListStorageKey, this.todoList);
     } else {
-      localStorage.removeItem('todoList');
+      localStorage.clear();
     }
   }
 }
